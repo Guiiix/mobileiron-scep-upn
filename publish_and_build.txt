@@ -1,0 +1,2 @@
+dotnet publish -c Release -r win-x64 --self-contained true
+wix build  -arch x64 installer\Product.wxs -o DMIPatchSCEP.msi -acceptEula wix7

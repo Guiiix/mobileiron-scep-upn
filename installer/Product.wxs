@@ -1,0 +1,49 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <Package
+    Name="DMI Patch SCEP"
+    Manufacturer="DMI"
+    Version="1.0.0"
+    UpgradeCode="7971decc-6183-4c04-81ac-83e12e031b27">
+
+    <MediaTemplate EmbedCab="yes"/>
+
+    <Feature Id="MainFeature">
+      <ComponentRef Id="ServiceComponent"/>
+    </Feature>
+  </Package>
+
+  <Fragment>
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="DMI" Name="DMI">
+        <Directory Id="INSTALLFOLDER" Name="DMIPatchSCEP"/>
+      </Directory>
+    </StandardDirectory >
+</Fragment>
+
+  <Fragment>
+    <Component Id="ServiceComponent"
+               Directory="INSTALLFOLDER"
+               Guid="4c846a9f-efa0-4e6c-98fc-25a8579d7c23">
+
+      <File Id="ServiceExe" Source="publish\DMIPatchSCEP.exe" KeyPath="yes" />
+o
+      <ServiceInstall
+        Id="InstallService"
+        Name="DMIPatchSCEP"
+        DisplayName="DMI Patch SCEP"
+        Type="ownProcess"
+        Start="auto"
+        Account="LocalSystem" />
+
+      <ServiceControl
+        Id="ServiceControl"
+        Name="DMIPatchSCEP"
+        Start="install"
+        Stop="both"
+        Remove="uninstall"
+        Wait="yes"/>
+
+    </Component>
+  </Fragment>
+</Wix>

@@ -84,8 +84,8 @@ namespace DMIPatchSCEP
                     }
                 }
 
-                // 500ms should be enough to modify registry values between omadmclient and dmcertinst actions
-                await Task.Delay(500, stoppingToken);
+                // 100ms should be enough to modify registry values between omadmclient and dmcertinst actions
+                await Task.Delay(100, stoppingToken);
             }
         }
     }
